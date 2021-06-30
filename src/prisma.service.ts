@@ -1,4 +1,3 @@
-//inicializa Prisma y permite la conexion BBDD 
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 

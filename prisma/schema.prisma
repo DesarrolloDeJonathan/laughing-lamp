@@ -2,15 +2,15 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
-//Generador Prisma documentacion
-// el signo de pregunta significa que es opcional
+
+
 model User {
   id    Int     @default(autoincrement()) @id
   email String  @unique

@@ -5,9 +5,11 @@ import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostsService {
+
   constructor(private prismaService: PrismaService) {
 
   }
+
   create(createPostDto: CreatePostDto) {
     return 'This action adds a new post';
   }

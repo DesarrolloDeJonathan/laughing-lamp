@@ -1,36 +1,24 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
-// import { CreateUsuarioDto } from './dto/create-usuario.dto';
-// import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-// import { validate } from 'class-validator';
+import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { Usuario } from './entities/usuario.entity';
 
 @Controller('usuarios')
 export class UsuariosController {
-  constructor(private readonly usuariosService: UsuariosService) {}
+  constructor(private readonly usuariosService: UsuariosService) { }
 
-  //createUsuarioDto es el vaarible  que podemos remplazar con cualquier nombre como data
   @Post()
-  @UsePipes(ValidationPipe)
-  create(@Body('data') createUsuarioDto: any) {
-    return this.usuariosService.create(createUsuarioDto);
+  create(@Body("data") data: CreateUsuarioDto): Promise<Usuario> {
+    return this.usuariosService.create(data);
   }
 
   @Get()
   findAll() {
     return this.usuariosService.findAll();
   }
+
   @Get('signIn')
-  signIn(@Body('data') data: any) {
+  signIn(@Body("data") data: any) {
     return this.usuariosService.signIn(data);
   }
 
@@ -40,14 +28,13 @@ export class UsuariosController {
   }
 
   @Patch()
-  update(@Body('data') updateUsuarioDto: any) {
-    return this.usuariosService.update(updateUsuarioDto);
-    // console.log(updateProductoDto); para verlo en consola hy ver si esta llegando los datos
+  update(@Body('data') data: any) {
+    return this.usuariosService.update(data);
   }
 
   @Delete()
   remove(@Param('id') id: string) {
     return this.usuariosService.remove(+id);
-    // console.log(id);
   }
 }
+
