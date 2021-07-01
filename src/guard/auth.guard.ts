@@ -6,10 +6,14 @@ import * as jwt from 'jsonwebtoken';
 export class AuhtGuardJwt extends AuthGuard('jwt') {
 
     async canActivate(context: ExecutionContext): Promise<any> {
-
         const request = context.switchToHttp().getRequest();
-        var token = request.headers.authorization.split(" ")[1];
         let query = context.getHandler().name;
+        let token = "";
+
+        if (request.headers.authorization !== undefined) {
+            token = request.headers.authorization.split(" ")[1];
+
+        }
 
         if (query == "signIn") {
             return true;
