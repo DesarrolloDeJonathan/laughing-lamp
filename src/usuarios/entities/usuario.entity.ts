@@ -1,20 +1,23 @@
-import { IsEmail, IsNotEmpty } from "class-validator";
+import 'reflect-metadata';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
-export class Usuario {
-    @IsNotEmpty()
-    id: number;
+@ObjectType()
+export class Usuarios {
+    @Field(type => ID)
+    id: number
 
-    @IsNotEmpty()
-    @IsEmail()
-    email: string;
+    @Field()
+    email: string
 
-    @IsNotEmpty()
-    name: string;
-    
-    salt: string;
+    @Field()
+    name: string
 
-    @IsNotEmpty()
-    password: string;
+    @Field({nullable: true})
+    salt?: string
 
-    token: string;
+    @Field()
+    password: string
+
+    @Field({nullable: true})
+    token?: string
 }

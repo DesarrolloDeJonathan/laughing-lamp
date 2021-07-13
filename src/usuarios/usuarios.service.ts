@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { Usuario } from './entities/usuario.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { JwtService } from '@nestjs/jwt';
+import { Usuarios } from './entities/usuario.entity';
 
 @Injectable()
 export class UsuariosService {
@@ -11,7 +11,7 @@ export class UsuariosService {
 
   }
 
-  async create(data: CreateUsuarioDto): Promise<Usuario> {
+  async create(data: CreateUsuarioDto): Promise<Usuarios> {
     const salt = await bcrypt.genSalt();
 
     return this.prismaService.user.create({
@@ -49,8 +49,8 @@ export class UsuariosService {
 
   }
 
-  async findAll(): Promise<Usuario[]> {
-    return this.prismaService.user.findMany({
+  async findAll(): Promise<Usuarios[]> {
+    return await this.prismaService.user.findMany({
       include: { posts: true }
     });
 

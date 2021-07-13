@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { Usuario } from "src/usuarios/entities/usuario.entity";
+import { Usuarios } from "src/usuarios/entities/usuario.entity";
 
 export class Post {
     @IsNotEmpty()
@@ -12,5 +12,5 @@ export class Post {
 
     published?: boolean;
 
-    author?: Usuario
+    author?: Usuarios
 }

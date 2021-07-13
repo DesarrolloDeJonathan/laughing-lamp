@@ -10,6 +10,7 @@ import { PostsController } from './posts/posts.controller';
 import { PrismaService } from './prisma.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { UsuariosResolver } from './usuarios/usuario.resolver';
 
 
 @Module({
@@ -36,6 +37,6 @@ import { join } from 'path';
     }),
   ],
   controllers: [AppController, PostsController, UsuariosController],
-  providers: [AppService, UsuariosService, PostsService, PrismaService],
+  providers: [AppService, UsuariosService, PostsService, PrismaService, UsuariosResolver],
 })
 export class AppModule { }

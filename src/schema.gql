@@ -1,0 +1,16 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Usuarios {
+  id: ID!
+  email: String!
+  name: String!
+  salt: String
+  password: String!
+  token: String
+}
+
+type Query {
+  getUsuarios: [Usuarios!]!
+}

@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { Usuario } from './entities/usuario.entity';
+import { Usuarios } from './entities/usuario.entity';
 
 @Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) { }
 
   @Post()
-  create(@Body("data") data: CreateUsuarioDto): Promise<Usuario> {
+  create(@Body("data") data: CreateUsuarioDto): Promise<Usuarios> {
     return this.usuariosService.create(data);
   }
 
