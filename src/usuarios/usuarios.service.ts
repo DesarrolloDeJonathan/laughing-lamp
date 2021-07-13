@@ -40,11 +40,13 @@ export class UsuariosService {
       throw new UnauthorizedException("Creadenciales inválidas");
     }
 
-    const token = this.jwtService.sign({ user: user });
+    const token = this.jwtService.sign({ user_id: user.id });
 
-    const tkn = Object.assign(user, { token });
+    return await this.prismaService.user.update({
+      where: { id: user.id },
+      data: { token: token }
+    })
 
-    return tkn;
   }
 
   async findAll(): Promise<Usuario[]> {

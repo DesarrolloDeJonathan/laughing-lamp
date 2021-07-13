@@ -15,4 +15,6 @@ export class Usuario {
 
     @IsNotEmpty()
     password: string;
+
+    token: string;
 }

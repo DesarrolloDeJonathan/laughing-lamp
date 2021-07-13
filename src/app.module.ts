@@ -8,10 +8,23 @@ import { UsuariosController } from './usuarios/usuarios.controller';
 import { PostsService } from './posts/posts.service';
 import { PostsController } from './posts/posts.controller';
 import { PrismaService } from './prisma.service';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      cors: {
+        origin: '*',
+        credentials: true,
+      },
+      context: ({ req, res }) => ({
+        req: req,
+        res: res
+      }),
+      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
+    }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {
